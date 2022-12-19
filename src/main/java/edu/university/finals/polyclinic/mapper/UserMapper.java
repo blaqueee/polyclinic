@@ -58,7 +58,7 @@ public class UserMapper {
                 .passportId(form.getPassportId())
                 .build();
         setProperties(patient, form);
-        patient.setRole(Role.ROLE_DOCTOR);
+        patient.setRole(Role.ROLE_USER);
 
         return patient;
     }
