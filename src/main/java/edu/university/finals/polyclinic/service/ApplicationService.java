@@ -15,6 +15,9 @@ import edu.university.finals.polyclinic.repository.HistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ApplicationService {
@@ -24,6 +27,13 @@ public class ApplicationService {
     private final ComplaintRepository complaintRepository;
     private final ApplicationMapper applicationMapper;
     private final HistoryMapper historyMapper;
+
+    public List<ApplicationDto> getAllByDoctor(User user) {
+        var applications = applicationRepository.findAllByDoctor((Doctor) user);
+        return applications.stream()
+                .map(applicationMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
     public ApplicationDto createApplication(ApplicationRequest form, User user) throws NotFoundException {
         var complaint = complaintRepository.findById(form.getComplaintId());

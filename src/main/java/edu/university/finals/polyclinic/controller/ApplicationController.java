@@ -7,18 +7,21 @@ import edu.university.finals.polyclinic.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/application")
 @RequiredArgsConstructor
 public class ApplicationController {
     private final ApplicationService applicationService;
+
+    @GetMapping
+    public ResponseEntity<List<ApplicationDto>> getAllByDoctor(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(applicationService.getAllByDoctor(user));
+    }
 
     @PostMapping
     public ResponseEntity<ApplicationDto> createApplication(@Valid @RequestBody ApplicationRequest form,
