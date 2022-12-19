@@ -29,7 +29,6 @@ public class ApplicationMapper {
                 .patient(userMapper
                         .toPatientDto(application.getComplaint().getPatient()))
                 .disease(diseaseMapper.toDto(application.getDisease()))
-                .doctor(userMapper.toDoctorDto(application.getDoctor()))
                 .createdAt(application.getCreatedAt())
                 .build();
     }

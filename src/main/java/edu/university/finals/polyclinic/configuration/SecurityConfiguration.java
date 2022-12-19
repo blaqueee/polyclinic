@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/complaint/**").hasRole("USER")
                 .antMatchers("/api/application/**").hasRole("DOCTOR")
+                .antMatchers("/api/history/**").fullyAuthenticated()
                 .anyRequest().permitAll();
 
         http.csrf().disable();

@@ -20,9 +20,6 @@ public class ApplicationDto {
     @JsonProperty("disease")
     private DiseaseDto disease;
 
-    @JsonProperty("doctor")
-    private DoctorDto doctor;
-
     @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
